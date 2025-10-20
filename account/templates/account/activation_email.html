@@ -1,0 +1,37 @@
+{% extends "account/base.html" %}
+{% block title %}Activate Your Account{% endblock title %}
+
+{% block content %}
+<div class="container-glass">
+  <div class="glass activation-container mx-auto text-center">
+    <h3 class="mb-4">🚀 Activate Your Account</h3>
+    <p class="mb-4">
+      Thank you for registering! Please click the button below to activate your account and get started.
+    </p>
+
+    <a href="#" class="btn btn-accent btn-lg mb-3" id="activateBtn">
+      Activate Account
+      <span id="spinner" class="spinner-border spinner-border-sm ms-2 d-none" role="status" aria-hidden="true"></span>
+    </a>
+
+    <p class="mb-2">
+      Already activated? <a href="{% url 'login' %}">Sign In</a>
+    </p>
+
+    <p class="small mt-3">
+      If you encounter any issues, please contact us at 
+      <a href="mailto:support@example.com">support@example.com</a>
+    </p>
+  </div>
+</div>
+
+{% comment %} <script>
+const activateBtn = document.getElementById('activateBtn');
+const spinner = document.getElementById('spinner');
+
+activateBtn.addEventListener('click', function() {
+    spinner.classList.remove('d-none');
+    activateBtn.style.pointerEvents = 'none'; // disable further clicks
+});
+</script> {% endcomment %}
+{% endblock content %}

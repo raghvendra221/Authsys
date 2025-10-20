@@ -1,0 +1,44 @@
+{% extends "account/base.html" %}
+{% load static %}
+
+
+{% block title %}Register{% endblock title %}
+
+{% block content %}
+<div class="container-glass">
+  <div class="glass register-container mx-auto">
+    <h3 class="text-center mb-4">📝 Create Account</h3>
+
+    <form method="POST" novalidate>
+      {% csrf_token %}
+
+      {% for field in form %}
+      <div class="mb-3">
+        <label for="{{ field.id_for_label }}" class="form-label">
+          {{ field.label }}
+        </label>
+        {{ field }}
+        {% if field.errors %}
+        <div class="text-danger small mt-1">
+          {{ field.errors|striptags }}
+        </div>
+        {% endif %}
+      </div>
+      {% endfor %}
+
+      <button type="submit" class="btn btn-accent w-100">Register</button>
+    </form>
+
+    {% if form.non_field_errors %}
+    <div class="alert alert-danger mt-3 mb-0">
+      {{ form.non_field_errors }}
+    </div>
+    {% endif %}
+
+    <p class="text-center mt-3 mb-0">
+      Already have an account?
+      <a href="{% url 'login'%}">Login</a>
+    </p>
+  </div>
+</div>
+{% endblock content %}

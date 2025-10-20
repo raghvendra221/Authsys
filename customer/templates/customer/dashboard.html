@@ -1,0 +1,14 @@
+{% extends "account/base.html" %}
+{% block title %}Customer Dashboard{% endblock title %}
+
+{% block content %}
+<div class="glass dashboard-panel mx-auto mt-5 text-center">
+    <h1 class="mb-4">Customer Dashboard</h1>
+    <h2 class="mb-3">Welcome, {{ user.username }}</h2>
+    <p>Manage your account settings below:</p>
+
+    <a href="{% url 'password-changed' %}" class="btn btn-accent mt-3 btn-lg">
+        🔒 Change Password
+    </a>
+</div>
+{% endblock content %}
