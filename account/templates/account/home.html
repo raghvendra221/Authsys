@@ -1,5 +1,41 @@
 {% extends "account/base.html" %}
 {% block title %}Home{% endblock title %}
+
 {% block content %}
-<h1>Home Page</h1>
-{% endblock content %}
+<div class="home-glass">
+    <div class="text-center">
+        <!-- Logo / App Heading -->
+        <div class="logo-container mb-4">
+            <h1 class="display-3 fw-bold brand-title">🔐 AuthSystem</h1>
+            <p class="tagline">Secure • Elegant • Simple</p>
+        </div>
+
+        <!-- Main Welcome Section -->
+        <h2 class="mb-3 fw-semibold">Welcome to Your Secure Space 🌐</h2>
+        <p class="lead mb-4">A beautiful authentication system built with Django.</p>
+
+        {% if user.is_authenticated %}
+            <a href="{% url 'customer-dashboard' %}" class="btn btn-accent me-3">Go to Dashboard</a>
+            <a href="{% url 'logout' %}" class="btn btn-outline-light">Logout</a>
+        {% else %}
+            <a href="{% url 'login' %}" class="btn btn-accent me-3">Login</a>
+            <a href="{% url 'register' %}" class="btn btn-outline-light">Register</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock content %} 
+
+{% comment %} {% block title %}Home{% endblock title %}
+
+{% block content %}
+<div class="home-glass">
+    <h1>Welcome to Auth System</h1>
+    <h2>Secure. Simple. Elegant.</h2>
+
+    <div class="home-buttons">
+        <a href="#" class="btn btn-accent">Login</a>
+        <a href="#" class="btn btn-outline-light">Register</a>
+    </div>
+</div>
+{% endblock content %} {% endcomment %}
+

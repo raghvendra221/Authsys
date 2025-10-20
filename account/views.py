@@ -1,19 +1,25 @@
 from django.shortcuts import render,redirect
-from account.forms import UserForm,LoginForm,PasswordResetForm,SetNewPasswordForm
+from account.forms import RegistrationForm,LoginForm,PasswordResetForm,SetNewPasswordForm
 from django.contrib.auth import logout
+from django.contrib import messages
 def home(req):
     return render(req,'account/home.html')
 
 def register(req):
     if req.method == "POST":
-        form =UserForm(req.POST)
+        form =RegistrationForm(req.POST)
         if form.is_valid():
             user = form.save(commit=False)
-            user.password = form.cleaned_data['password']
+            user.set_password(form.cleaned_data['password'])#this will save the pasword as hash intead of raw password(mtlb code language mai save hoga )
+            user.is_active=False
             user.save()
-            return redirect('home')
+            messages.success(
+                req,
+                'Registration successful! Please check your email to activate your account',
+                )
+            return redirect('login')
     else:
-        form=UserForm()
+        form=RegistrationForm()
     return render(req,'account/register.html',{'form':form})
 
 def login(req):

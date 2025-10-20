@@ -1,25 +1,33 @@
+/* ==========================================
+   :root variables
+   ========================================== */
 :root {
   --glass-bg: rgba(255, 255, 255, 0.06);
   --glass-border: rgba(255, 255, 255, 0.12);
   --accent: 120, 170, 255;
 }
 
+/* ==========================================
+   Global Styles
+   Applies to all pages
+   ========================================== */
 html, body {
   height: 100%;
-}
-
-body {
   margin: 0;
-  min-height: 100%;
-  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  padding: 0;
+  font-family: 'Poppins', 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
   background: radial-gradient(1200px 600px at 10% 10%, rgba(120, 140, 255, 0.08), transparent 10%),
               radial-gradient(1000px 500px at 90% 90%, rgba(120, 255, 170, 0.04), transparent 10%),
               linear-gradient(180deg, #0f1724 0%, #081124 100%);
+  color: #e6eef8;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  color: #e6eef8;
 }
 
+/* ==========================================
+   Glass Effect (Reusable)
+   ========================================== */
 .glass {
   backdrop-filter: blur(8px) saturate(120%);
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
@@ -29,377 +37,425 @@ body {
   color: #e6eef8;
 }
 
-.container-glass {
-  width: 100%;
-  max-width: 1100px;
-  margin: 32px auto;
-  padding: 28px;
-}
-
+/* ==========================================
+   Navbar
+   ========================================== */
 .navbar-glass {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.015));
-  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-  backdrop-filter: blur(6px);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.6);
 }
 
 .brand {
+  font-size: 1.5rem;
   font-weight: 600;
-  letter-spacing: 0.2px;
-  color: #eaf2ff;
+  color: #00b4d8;
+  letter-spacing: 1px;
 }
 
 .nav-link {
   color: rgba(230, 242, 255, 0.9) !important;
+  margin: 0 10px;
+  font-weight: 500;
+  transition: color 0.3s;
 }
 
+.nav-link:hover {
+  color: #00b4d8 !important;
+}
+
+/* ==========================================
+   Buttons
+   ========================================== */
 .btn-accent {
   border-radius: 10px;
   padding: 6px 12px;
-  background: linear-gradient(90deg, rgba(var(--accent), 0.16), rgba(var(--accent), 0.08));
+  background: linear-gradient(90deg, rgba(var(--accent), 0.4), rgba(var(--accent), 0.2));
+  border: 1px solid rgba(var(--accent), 0.4);
   color: #eaf2ff;
-  border: 1px solid rgba(var(--accent), 0.18);
+  font-weight: 500;
+  transition: 0.3s;
 }
 
-.messages {
-  max-width: 1100px;
-  margin: 8px auto;
+.btn-accent:hover {
+  background: linear-gradient(90deg, rgba(var(--accent), 0.6), rgba(var(--accent), 0.3));
+  transform: translateY(-2px);
 }
 
-main {
-  flex: 1 0 auto;
+.btn-outline-light {
+  border: 1px solid #fff;
+  color: #fff;
+  background: transparent;
+  padding: 10px 25px;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.btn-outline-light:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ==========================================
+   Form Inputs (Global)
+   ========================================== */
+input.form-control {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #eaf2ff;
+}
+
+input.form-control:focus {
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: rgba(var(--accent), 0.4);
+  box-shadow: 0 0 0 0.25rem rgba(var(--accent), 0.25);
+  color: #eaf2ff;
+}
+
+label.form-label {
+  color: rgba(230, 242, 255, 0.85);
+  font-weight: 500;
+}
+
+/* Links */
+a {
+  color: rgba(120, 170, 255, 0.9);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* ==========================================
+   Login Page
+   ========================================== */
+.login-container {
+  width: 100%;
+  max-width: 420px;
+  padding: 30px;
+  border-radius: 14px;
+
+  /* Center vertically & horizontally */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  /* Glass effect */
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(15px) saturate(130%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  /* Shadow */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6),
+              0 4px 16px rgba(0, 0, 0, 0.3);
+
+  color: #e6eef8;
+}
+
+/* Login container button */
+.login-container .btn-accent {
   width: 100%;
 }
 
-footer {
-  flex-shrink: 0;
-  width: 100%;
-  padding: 12px 0;
-  text-align: center;
-  color: rgba(230, 242, 255, 0.6);
-  font-size: 0.9rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.02);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), transparent);
-}
-
-@media (max-width: 576px) {
-  .container-glass {
-    margin: 16px;
-    padding: 18px;
-    border-radius: 12px;
-  }
-}
+/* ==========================================
+   Registration Page
+   ========================================== */
 .register-container {
   max-width: 420px;
-  margin-top: 80px;
+  width: 90%;
   padding: 30px;
+  border-radius: 14px;
+
+  /* Glass effect */
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(15px) saturate(130%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  /* Shadow */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6),
+              0 4px 16px rgba(0, 0, 0, 0.3);
+  color: #e6eef8;
+
+  /* Center in page */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
+
 
 .register-container label {
   color: rgba(230, 242, 255, 0.85);
   font-weight: 500;
 }
 
-input.form-control {
-  background-color: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #eaf2ff;
+/* ==========================================
+   Password Reset & Change Password
+   ========================================== */
+.reset-container,
+.reset-confirm-container,
+.activation-container,
+.dashboard-container {
+  max-width: 420px;
+  padding: 30px;
+  margin-top: 80px;
 }
 
-input.form-control:focus {
-  background-color: rgba(255, 255, 255, 0.08);
-  border-color: rgba(var(--accent), 0.4);
-  box-shadow: 0 0 0 0.25rem rgba(var(--accent), 0.25);
-  color: #eaf2ff;
+.reset-container label,
+.reset-confirm-container label,
+.activation-container p,
+.dashboard-container h2,
+.dashboard-container p {
+  color: #e6eef8;
+  font-weight: 500;
 }
 
-.btn-accent {
-  background: linear-gradient(90deg, rgba(var(--accent), 0.4), rgba(var(--accent), 0.2));
-  border: 1px solid rgba(var(--accent), 0.4);
-  color: #eaf2ff;
-  transition: 0.3s;
+.reset-container .btn-accent,
+.reset-confirm-container .btn-accent,
+.activation-container .btn-accent,
+.dashboard-container .btn-accent {
+  width: 100%;
+  padding: 10-12px 0;
+  font-size: 1.1rem;
 }
 
-.btn-accent:hover {
+.reset-container .btn-accent:hover,
+.reset-confirm-container .btn-accent:hover,
+.activation-container .btn-accent:hover,
+.dashboard-container .btn-accent:hover {
   background: linear-gradient(90deg, rgba(var(--accent), 0.6), rgba(var(--accent), 0.3));
   transform: translateY(-2px);
 }
 
+.spinner-border {
+  color: rgba(120, 170, 255, 0.8);
+}
+
+.text-danger {
+  color: #ff6b6b !important;
+}
+
+.text-success {
+  color: #6bff95 !important;
+}
+
+/* ==========================================
+   Dashboard Panel
+   ========================================== */
+.dashboard-panel {
+  max-width: 450px;
+  padding: 40px 30px;
+  border-radius: 14px;
+  box-shadow: 0 6px 28px rgba(2, 6, 23, 0.6);
+  color: #e6eef8;
+  margin-top: 80px;
+}
+
+/* ==========================================
+   Home Page
+   ========================================== */
+.home-glass {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01));
+  backdrop-filter: blur(18px);
+  box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+.brand-title {
+  font-size: 3.8rem;
+  font-weight: 700;
+  color: #00b4d8;
+  letter-spacing: 2px;
+  text-shadow: 0 0 25px rgba(0, 180, 216, 0.7),
+               0 0 40px rgba(0, 180, 216, 0.3);
+  margin-bottom: 15px;
+}
+
+.tagline {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 40px;
+  letter-spacing: 0.5px;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.15);
+}
+
+.home-glass h2 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  color: #ffffff;
+  text-shadow: 0 0 15px rgba(0, 180, 216, 0.3);
+}
+
+.home-glass p {
+  font-size: 1.1rem;
+  color: rgba(230, 230, 230, 0.9);
+  margin-bottom: 30px;
+}
+
+.home-glass .btn {
+  margin: 6px;
+}
+
+/* ==========================================
+   Footer
+   ========================================== */
+footer {
+  flex-shrink: 0;
+  width: 100%;
+  padding: 20px 0;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+  position: absolute;
+  bottom: 0;
+}
+
+/* ==========================================
+   Scrollbar Styling
+   ========================================== */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #00b4d8;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* ==========================================
+   Media Queries
+   ========================================== */
+@media (max-width: 576px) {
+  .container-glass,
+  .register-container,
+  .reset-container,
+  .reset-confirm-container,
+  .activation-container,
+  .dashboard-container {
+    margin: 16px auto;
+    padding: 18px;
+    border-radius: 12px;
+  }
+}
+
+
+.main-form-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* full viewport height */
+  padding: 20px;
+  box-sizing: border-box;
+  overflow: hidden; /* stop any extra scroll */
+}
+.register-container,
 .login-container {
   max-width: 420px;
-  margin-top: 80px;
+  width: 90%;
   padding: 30px;
-}
+  border-radius: 14px;
 
-.login-container label {
-  color: rgba(230, 242, 255, 0.85);
-  font-weight: 500;
-}
+  /* Glass effect */
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(15px) saturate(130%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
 
-input.form-control {
-  background-color: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #eaf2ff;
-}
+  /* Shadow */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6),
+              0 4px 16px rgba(0, 0, 0, 0.3);
 
-input.form-control:focus {
-  background-color: rgba(255, 255, 255, 0.08);
-  border-color: rgba(var(--accent), 0.4);
-  box-shadow: 0 0 0 0.25rem rgba(var(--accent), 0.25);
-  color: #eaf2ff;
-}
+  color: #e6eef8;
 
-.btn-accent {
-  background: linear-gradient(90deg, rgba(var(--accent), 0.4), rgba(var(--accent), 0.2));
-  border: 1px solid rgba(var(--accent), 0.4);
-  color: #eaf2ff;
-  transition: 0.3s;
-}
+  /* Keep absolute centering */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
-.btn-accent:hover {
-  background: linear-gradient(90deg, rgba(var(--accent), 0.6), rgba(var(--accent), 0.3));
-  transform: translateY(-2px);
-}
-
-a {
-  color: rgba(120, 170, 255, 0.9);
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
+  /* Prevent extra scroll */
+  max-height: calc(100vh - 40px); /* form can’t be taller than viewport minus padding */
+  overflow-y: auto; /* allow scrolling inside form if content exceeds */
 }
 
 
-/* password reset page */
-.reset-container {
+
+
+
+.main-form-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.register-container,
+.login-container {
   max-width: 420px;
-  margin-top: 80px;
+  width: 100%;
   padding: 30px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(15px) saturate(130%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6),
+              0 4px 16px rgba(0, 0, 0, 0.3);
+  color: #e6eef8;
+
+  /* prevent form from overflowing screen */
+  max-height: 100vh;
+  overflow-y: auto;
 }
 
-.reset-container label {
-  color: rgba(230, 242, 255, 0.85);
-  font-weight: 500;
-}
-
-input.form-control {
-  background-color: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #eaf2ff;
-}
-
-input.form-control:focus {
-  background-color: rgba(255, 255, 255, 0.08);
-  border-color: rgba(var(--accent), 0.4);
-  box-shadow: 0 0 0 0.25rem rgba(var(--accent), 0.25);
-  color: #eaf2ff;
-}
-
-.btn-accent {
-  background: linear-gradient(90deg, rgba(var(--accent), 0.4), rgba(var(--accent), 0.2));
-  border: 1px solid rgba(var(--accent), 0.4);
-  color: #eaf2ff;
-  transition: 0.3s;
-}
-
-.btn-accent:hover {
-  background: linear-gradient(90deg, rgba(var(--accent), 0.6), rgba(var(--accent), 0.3));
-  transform: translateY(-2px);
-}
-
-a {
-  color: rgba(120, 170, 255, 0.9);
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-.spinner-border {
-  color: rgba(120, 170, 255, 0.8);
-}
-
-/* password reset confirmation */
-.reset-confirm-container {
-  max-width: 420px;
-  margin-top: 80px;
-  padding: 30px;
-}
-
-.reset-confirm-container label {
-  color: rgba(230, 242, 255, 0.85);
-  font-weight: 500;
-}
-
-input.form-control {
-  background-color: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #eaf2ff;
-}
-
-input.form-control:focus {
-  background-color: rgba(255, 255, 255, 0.08);
-  border-color: rgba(var(--accent), 0.4);
-  box-shadow: 0 0 0 0.25rem rgba(var(--accent), 0.25);
-  color: #eaf2ff;
-}
-
-.btn-accent {
-  background: linear-gradient(90deg, rgba(var(--accent), 0.4), rgba(var(--accent), 0.2));
-  border: 1px solid rgba(var(--accent), 0.4);
-  color: #eaf2ff;
-  transition: 0.3s;
-}
-
-.btn-accent:hover {
-  background: linear-gradient(90deg, rgba(var(--accent), 0.6), rgba(var(--accent), 0.3));
-  transform: translateY(-2px);
-}
-
-.spinner-border {
-  color: rgba(120, 170, 255, 0.8);
-}
-
-a {
-  color: rgba(120, 170, 255, 0.9);
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-/* activation email */
-.activation-container {
-  max-width: 420px;
-  margin-top: 100px;
-  padding: 30px;
+/* ==========================================
+   Success / Alert Messages
+   ========================================== */
+.alert-container {
+  width: 100%;
   text-align: center;
 }
 
-.activation-container p {
-  color: rgba(230, 242, 255, 0.85);
+.alert-success-glass {
+  background: rgba(0, 255, 150, 0.1);
+  border: 1px solid rgba(0, 255, 150, 0.3);
+  color: #6bff95;
+  padding: 10px 15px;
+  border-radius: 10px;
+  font-weight: 500;
+  box-shadow: 0 0 12px rgba(0, 255, 150, 0.2);
+  animation: fadeIn 0.5s ease;
+}
+.messages {
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-.activation-container .btn-accent {
-  width: 100%;
-  font-size: 1.1rem;
-  padding: 10px 0;
-  transition: 0.3s;
-}
-
-.activation-container .btn-accent:hover {
-  background: linear-gradient(90deg, rgba(var(--accent), 0.6), rgba(var(--accent), 0.3));
-  transform: translateY(-2px);
-}
-
-.activation-container a {
-  color: rgba(120, 170, 255, 0.9);
-}
-
-.activation-container a:hover {
-  text-decoration: underline;
-}
-
-.spinner-border {
-  color: rgba(120, 170, 255, 0.8);
+.messages.fade-out {
+  opacity: 0;
+  transform: translateY(-10px);
 }
 
 
-/* customer dashboard */
-.dashboard-container {
-    max-width: 420px;
-    margin: 80px auto;
-    padding: 30px;
-    text-align: center;
+/* Animation for a soft appearance */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.dashboard-container h2, .dashboard-container p {
-    color: #e6eef8;
-}
-
-.dashboard-container .btn-accent {
-    width: 100%;
-    font-size: 1.1rem;
-    padding: 12px 0;
-    transition: 0.3s;
-}
-
-.dashboard-container .btn-accent:hover {
-    background: linear-gradient(90deg, rgba(var(--accent), 0.6), rgba(var(--accent), 0.3));
-    transform: translateY(-2px);
-}
-
-.dashboard-panel {
-    max-width: 450px;
-    padding: 40px 30px;
-    border-radius: 14px;
-    box-shadow: 0 6px 28px rgba(2, 6, 23, 0.6);
-    color: #e6eef8;
-    margin-top: 80px; /* space from top */
-}
-
-/* Button hover effect */
-.dashboard-panel .btn-accent:hover {
-    background: linear-gradient(90deg, rgba(var(--accent), 0.6), rgba(var(--accent), 0.3));
-    transform: translateY(-2px);
-    transition: 0.3s;
-}
-
-
-/* cuatomerpassword change */
-/* Center the change password panel horizontally */
-main {
-    padding: 20px;
-}
-
-/* Glass panel styling */
-.glass {
-    background: rgba(255, 255, 255, 0.06);
-    backdrop-filter: blur(8px) saturate(120%);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 14px;
-    box-shadow: 0 6px 28px rgba(2, 6, 23, 0.6);
-    color: #e6eef8;
-}
-
-/* Max width and centering */
-.mx-auto {
-    margin-left: auto !important;
-    margin-right: auto !important;
-}
-
-/* Input fields */
-input.form-control {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: #e6eef8;
-}
-
-/* Labels */
-label.form-label {
-    color: #e6eef8;
-}
-
-/* Button hover effect */
-.btn-accent:hover {
-    background: linear-gradient(90deg, rgba(var(--accent), 0.6), rgba(var(--accent), 0.3));
-    transform: translateY(-2px);
-    transition: 0.3s;
-}
-
-/* Error messages */
-.text-danger {
-    color: #ff6b6b !important;
-}
-
-/* Success messages */
-.text-success {
-    color: #6bff95 !important;
-}
-
-main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: calc(100vh - 120px); /* adjust for navbar/footer */
+#messages {
+  transition: opacity 0.5s ease;
 }

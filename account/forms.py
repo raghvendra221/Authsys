@@ -1,7 +1,12 @@
 from django import forms
 from account.models import User
 
-class UserForm(forms.ModelForm):
+class RegistrationForm(forms.ModelForm):
+    password = forms.CharField(
+        widget=forms.PasswordInput(attrs={'class': 'form-control'}),
+         label="Password"
+        )
+    
     confirm_password = forms.CharField(
         widget=forms.PasswordInput(attrs={'class': 'form-control'}),
          label="Confirm Password"
@@ -25,6 +30,12 @@ class UserForm(forms.ModelForm):
         if password != confirm_password:
             raise forms.ValidationError("Passwords do not match.")
         return cleaned_data
+    
+    def clean_email(self):
+        email = self.cleaned_data.get("email")
+        if User.objects.filter(email=email).exists():
+            raise forms.ValidationError("Email is already registered.")
+        return email
 
 class LoginForm(forms.Form):
     email = forms.EmailField(
@@ -44,7 +55,7 @@ class PasswordResetForm(forms.Form):
     )
 
 
-from django import forms
+
 
 class SetNewPasswordForm(forms.Form):
     new_password = forms.CharField(
