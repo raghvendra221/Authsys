@@ -431,14 +431,16 @@ footer {
 }
 
 .alert-success-glass {
-  background: rgba(0, 255, 150, 0.1);
-  border: 1px solid rgba(0, 255, 150, 0.3);
-  color: #6bff95;
+  background: rgba(0, 255, 150, 0.25); /* make background more opaque */
+  border: 1px solid rgba(0, 255, 150, 0.6);
+  color: #ffffff !important;          /* force text to white */
   padding: 10px 15px;
   border-radius: 10px;
-  font-weight: 500;
-  box-shadow: 0 0 12px rgba(0, 255, 150, 0.2);
+  font-weight: 600;
+  font-size: 1.1rem;
+  box-shadow: 0 0 15px rgba(0, 255, 150, 0.3);
   animation: fadeIn 0.5s ease;
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.7); /* optional: make text pop more */
 }
 .messages {
   transition: opacity 0.6s ease, transform 0.6s ease;
