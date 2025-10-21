@@ -9,6 +9,7 @@ from django.conf import settings
 from django.urls import reverse
 from account.utils import send_activation_email
 from account.models import User
+from django.utils import bui
 def home(req):
     return render(req,'account/home.html')
 
@@ -122,8 +123,17 @@ def password_reset(req):
     if req.method == "POST":
         form =PasswordResetForm(req.POST)
         if form.is_valid():
-            pass
-            # return redirect('customer_dashboard')
+            email=form.cleaned_data.get('email')
+            user =User.objects.filter(email=email).first()
+            if user:
+        
+                uidb64=urlsafe_base64_encode(force_bytes(user.pk))
+                token= default_token_generator.make_token(user)
+                reset_url=reverse(
+                'password_reset_confirm',kwargs={'uidb64':uidb64,'token':token}
+            )
+            absolute_reset_url=f"{req,build_absolute_uri(reset_url)}"
+            messages.success
     else:
         form=PasswordResetForm()
     return render(req,'account/pass_reset.html',{'form':form})

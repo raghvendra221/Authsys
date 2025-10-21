@@ -15,7 +15,11 @@
         <p class="lead mb-4">A beautiful authentication system built with Django.</p>
 
         {% if user.is_authenticated %}
+            {% if user.is_customer %}
             <a href="{% url 'customer-dashboard' %}" class="btn btn-accent me-3">Go to Dashboard</a>
+            {% elif user.is_seller %}
+            <a href="{% url 'seller-dashboard' %}" class="btn btn-accent me-3">Go to Dashboard</a>
+            {% endif %}
             <a href="{% url 'logout' %}" class="btn btn-outline-light">Logout</a>
         {% else %}
             <a href="{% url 'login' %}" class="btn btn-accent me-3">Login</a>

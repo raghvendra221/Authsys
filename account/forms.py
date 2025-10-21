@@ -53,7 +53,13 @@ class PasswordResetForm(forms.Form):
         }),
         label="Email"
     )
-
+    def clean_email(self):
+        email=self.cleaned_data.get('email')
+        #check if a user with this exail exist
+        if not User.objects.filter(email=email).exists():
+            raise forms.ValidationError('' \
+            'No account is associated with this email')
+        return email
 
 
 

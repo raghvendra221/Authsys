@@ -9,7 +9,6 @@
 
 /* ==========================================
    Global Styles
-   Applies to all pages
    ========================================== */
 html, body {
   height: 100%;
@@ -20,10 +19,12 @@ html, body {
               radial-gradient(1000px 500px at 90% 90%, rgba(120, 255, 170, 0.04), transparent 10%),
               linear-gradient(180deg, #0f1724 0%, #081124 100%);
   color: #e6eef8;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
+
+
 
 /* ==========================================
    Glass Effect (Reusable)
@@ -41,26 +42,24 @@ html, body {
    Navbar
    ========================================== */
 .navbar-glass {
-  background: rgba(15, 23, 36, 0.85); /* dark + slightly opaque */
+  background: rgba(15, 23, 36, 0.85);
   backdrop-filter: blur(15px) saturate(130%);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.7); /* stronger shadow */
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.7);
   transition: background 0.3s, box-shadow 0.3s;
 }
 
-/* Brand hover effect like nav buttons */
 .navbar-glass .brand {
   position: relative;
-  color: #00b4d8; /* bright blue */
+  color: #00b4d8;
   font-size: 1.7rem;
   font-weight: 700;
   letter-spacing: 1px;
   text-decoration: none;
   transition: color 0.3s ease, text-shadow 0.3s ease;
-  text-shadow: 0 0 8px rgba(0, 180, 216, 0.5); /* subtle glow */
+  text-shadow: 0 0 8px rgba(0, 180, 216, 0.5);
 }
 
-/* Underline effect */
 .navbar-glass .brand::after {
   content: "";
   position: absolute;
@@ -68,20 +67,18 @@ html, body {
   bottom: -3px;
   width: 0;
   height: 2px;
-  background: rgba(120, 170, 255, 0.8); /* matches nav button accent */
+  background: rgba(120, 170, 255, 0.8);
   transition: width 0.3s ease;
 }
 
-/* Hover state */
 .navbar-glass .brand:hover {
-  color: #78aaff; /* lighter blue */
+  color: #78aaff;
   text-shadow: 0 0 15px rgba(120, 170, 255, 0.6), 0 0 25px rgba(120, 170, 255, 0.3);
 }
 
 .navbar-glass .brand:hover::after {
-  width: 100%; /* underline expands */
+  width: 100%;
 }
-
 
 .navbar-glass .nav-link,
 .navbar-glass .btn-glass {
@@ -94,7 +91,6 @@ html, body {
 
 .navbar-glass .nav-link:hover,
 .navbar-glass .btn-glass:hover {
-  text-decoration: none;
   color: #00b4d8;
   background: rgba(255, 255, 255, 0.08);
   transform: translateY(-2px);
@@ -117,6 +113,7 @@ html, body {
 .btn-accent:hover {
   background: linear-gradient(90deg, rgba(var(--accent), 0.6), rgba(var(--accent), 0.3));
   transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 180, 216, 0.5);
 }
 
 .btn-outline-light {
@@ -128,15 +125,10 @@ html, body {
   transition: 0.3s;
 }
 
-.navbar-glass .btn-danger:hover {
-  background: rgba(255, 60, 60, 1);
-  box-shadow: 0 4px 15px rgba(255, 60, 60, 0.6);
-  transform: translateY(-2px);
-}
-
 .btn-outline-light:hover {
   background: rgba(255, 255, 255, 0.2);
 }
+
 .navbar-glass .btn-danger {
   background: rgba(255, 80, 80, 0.85);
   border: none;
@@ -144,21 +136,14 @@ html, body {
   transition: 0.3s;
 }
 
-.navbar-glass .btn-accent:hover {
+.navbar-glass .btn-danger:hover {
+  background: rgba(255, 60, 60, 1);
+  box-shadow: 0 4px 15px rgba(255, 60, 60, 0.6);
   transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(0, 180, 216, 0.5);
-  background: linear-gradient(90deg, rgba(var(--accent), 0.6), rgba(var(--accent), 0.3));
-}
-
-@media (max-width: 576px) {
-  .navbar-glass .nav-link,
-  .navbar-glass .btn-glass {
-    margin: 4px 0;
-  }
 }
 
 /* ==========================================
-   Form Inputs (Global)
+   Form Inputs
    ========================================== */
 input.form-control {
   background-color: rgba(255, 255, 255, 0.05);
@@ -183,122 +168,58 @@ a {
   color: rgba(120, 170, 255, 0.9);
   text-decoration: none;
 }
-
 a:hover {
   text-decoration: underline;
 }
 
 /* ==========================================
-   Login Page
+   All Forms Container (Login, Register, Reset, Activation, Dashboard)
    ========================================== */
-.login-container {
-  width: 100%;
-  max-width: 420px;
-  padding: 30px;
-  border-radius: 14px;
-
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  
-  background: rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(15px) saturate(130%);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-
- 
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6),
-              0 4px 16px rgba(0, 0, 0, 0.3);
-
-  color: #e6eef8;
-}
-
-/* Login container button */
-.login-container .btn-accent {
-  width: 100%;
-}
-
-/* ==========================================
-   Registration Page
-   ========================================== */
-.register-container {
-  max-width: 420px;
-  width: 90%;
-  padding: 30px;
-  border-radius: 14px;
-
-  
-  background: rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(15px) saturate(130%);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-
-  
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6),
-              0 4px 16px rgba(0, 0, 0, 0.3);
-  color: #e6eef8;
-
-  
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-
-.register-container label {
-  color: rgba(230, 242, 255, 0.85);
-  font-weight: 500;
-}
-
-/* ==========================================
-   Password Reset & Change Password
-   ========================================== */
+.login-container,
+.register-container,
 .reset-container,
 .reset-confirm-container,
 .activation-container,
 .dashboard-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   max-width: 420px;
+  width: 90%;
   padding: 30px;
-  margin-top: 80px;
-}
-
-.reset-container label,
-.reset-confirm-container label,
-.activation-container p,
-.dashboard-container h2,
-.dashboard-container p {
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(15px) saturate(130%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6),
+              0 4px 16px rgba(0, 0, 0, 0.3);
   color: #e6eef8;
-  font-weight: 500;
+  max-height: 90vh;
+  overflow-y: auto;
+  margin: 0;
 }
 
+.login-container .btn-accent,
+.register-container .btn-accent,
 .reset-container .btn-accent,
 .reset-confirm-container .btn-accent,
 .activation-container .btn-accent,
 .dashboard-container .btn-accent {
   width: 100%;
-  padding: 10-12px 0;
+  padding: 10px 0;
   font-size: 1.1rem;
 }
 
+.login-container .btn-accent:hover,
+.register-container .btn-accent:hover,
 .reset-container .btn-accent:hover,
 .reset-confirm-container .btn-accent:hover,
 .activation-container .btn-accent:hover,
 .dashboard-container .btn-accent:hover {
   background: linear-gradient(90deg, rgba(var(--accent), 0.6), rgba(var(--accent), 0.3));
   transform: translateY(-2px);
-}
-
-.spinner-border {
-  color: rgba(120, 170, 255, 0.8);
-}
-
-.text-danger {
-  color: #ff6b6b !important;
-}
-
-.text-success {
-  color: #6bff95 !important;
+  box-shadow: 0 4px 15px rgba(0, 180, 216, 0.5);
 }
 
 /* ==========================================
@@ -310,11 +231,10 @@ a:hover {
   border-radius: 14px;
   box-shadow: 0 6px 28px rgba(2, 6, 23, 0.6);
   color: #e6eef8;
-  margin-top: 80px;
 }
 
 /* ==========================================
-   Home Page
+   Home Page Glass
    ========================================== */
 .home-glass {
   width: 100vw;
@@ -380,108 +300,7 @@ footer {
 }
 
 /* ==========================================
-   Scrollbar Styling
-   ========================================== */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #00b4d8;
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.05);
-}
-
-/* ==========================================
-   Media Queries
-   ========================================== */
-@media (max-width: 576px) {
-  .container-glass,
-  .register-container,
-  .reset-container,
-  .reset-confirm-container,
-  .activation-container,
-  .dashboard-container {
-    margin: 16px auto;
-    padding: 18px;
-    border-radius: 12px;
-  }
-}
-
-
-.main-form-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh; /* full viewport height */
-  padding: 20px;
-  box-sizing: border-box;
-  overflow: hidden; /* stop any extra scroll */
-}
-  
-
-
-
-
-
-.main-form-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  min-height: 100vh;
-  padding: 20px;
-  box-sizing: border-box;
-}
-
-
-/* ==========================================
-   Success / Alert Messages
-   ========================================== */
-.alert-container {
-  width: 100%;
-  text-align: center;
-}
-
-.alert-success-glass {
-  background: rgba(0, 255, 150, 0.25); /* make background more opaque */
-  border: 1px solid rgba(0, 255, 150, 0.6);
-  color: #ffffff !important;          /* force text to white */
-  padding: 10px 15px;
-  border-radius: 10px;
-  font-weight: 600;
-  font-size: 1.1rem;
-  box-shadow: 0 0 15px rgba(0, 255, 150, 0.3);
-  animation: fadeIn 0.5s ease;
-  text-shadow: 0 0 6px rgba(0, 0, 0, 0.7); /* optional: make text pop more */
-}
-.messages {
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.messages.fade-out {
-  opacity: 0;
-  transform: translateY(-10px);
-}
-
-
-/* Animation for a soft appearance */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-#messages {
-  transition: opacity 0.5s ease;
-}
-
-
-
-/* ==========================================
-   Floating Django Messages (Global)
+   Messages (Django Alerts)
    ========================================== */
 #messages,
 .message-container {
@@ -493,17 +312,16 @@ footer {
   width: 90%;
   max-width: 420px;
   text-align: center;
-  pointer-events: none; /* prevents blocking clicks below */
+  pointer-events: none;
 }
 
 #messages .alert,
 .message-container .alert {
   display: inline-block;
-  pointer-events: auto; /* allows buttons if inside */
+  pointer-events: auto;
   animation: fadeIn 0.5s ease;
 }
 
-/* Fade out animation for message auto-hide */
 .fade-in-out {
   animation: fadeIn 0.5s ease, fadeOut 0.5s ease 2s forwards;
 }
@@ -516,6 +334,29 @@ footer {
 @keyframes fadeOut {
   to { opacity: 0; transform: translateY(-20px); }
 }
+
+/* ==========================================
+   Media Queries
+   ========================================== */
+@media (max-width: 576px) {
+  .login-container,
+  .register-container,
+  .reset-container,
+  .reset-confirm-container,
+  .activation-container,
+  .dashboard-container {
+    padding: 18px;
+    border-radius: 12px;
+    width: 95%;
+  }
+
+  .navbar-glass .nav-link,
+  .navbar-glass .btn-glass {
+    margin: 4px 0;
+  }
+}
+
+
 
 
 
