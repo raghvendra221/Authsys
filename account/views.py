@@ -3,7 +3,7 @@ from account.forms import RegistrationForm,LoginForm,PasswordResetForm,SetNewPas
 from django.utils.http import urlsafe_base64_encode,urlsafe_base64_decode
 from django.utils.encoding import force_bytes,force_str
 from django.contrib.auth.tokens import default_token_generator
-from django.contrib.auth import logout,authenticate,login
+from django.contrib.auth import logout,authenticate,login as auth_login
 from django.contrib import messages
 from django.conf import settings
 from django.urls import reverse
@@ -73,45 +73,49 @@ def login(req):
         elif req.user.is_customer:
             return redirect('customer-dashboard')
         return redirect('home')
-    if req.method == "POST":
-        email=req.POST.get('email')
-        password=req.POST.get('password')
+    
 
-        if not email or not password:
-            messages.erroe(req,"Both fields are required.")
-            return redirect('login')
+    if req.method == "POST":
+        form = LoginForm(req.POST)
+        if form.is_valid():
+            email = form.cleaned_data['email']
+            password = form.cleaned_data['password']
         
-        try:
-            user=User.objects.get(email=email)
-        except User.DoesNotExist:
-            messages.error(req,"Invalid email or password.")
-            return redirect('login')
+            try:
+                user=User.objects.get(email=email)
+            except User.DoesNotExist:
+                messages.error(req,"Invalid email or password.")
+                return redirect('login')
         
-        if not user.is_active:
-            messages.error(
+            if not user.is_active:
+                messages.error(
                 req,'Your account is inactive.Please activate your account'
             )
-            return redirect('login')
+                return redirect('login')
         
         #authentication work
-        user=authenticate(req,email=email,password=password)
+            user=authenticate(req,email=email,password=password)
 
-        if user is not None:
-            login(req,user)
-            if req.user.is_seller:
-                return redirect('seller-dashboard')
-            elif req.user.is_customer:
-                return redirect('customer-dashboard')
-            else:
-                messages.error(
+            if user is not None:
+                auth_login(req,user)
+                if req.user.is_seller:
+                    return redirect('seller-dashboard')
+                elif req.user.is_customer:
+                    return redirect('customer-dashboard')
+                else:
+                    messages.error(
                     req,"You do not have permission to access this area."
                 )
-                return redirect('home')
+                    return redirect('home')
             
+            else:
+                messages.error(req,"Invalid email or password.")
+                return redirect('login')
         else:
-            pass
-        
-    return render(req,'account/login.html',)
+            return render(req,'account/login.html',{'form':form})
+    else:
+        form=LoginForm()
+    return render(req,'account/login.html',{'form':form})
 
 
 def password_reset(req):
