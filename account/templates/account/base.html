@@ -24,15 +24,16 @@
         <ul class="navbar-nav ms-auto align-items-lg-center">
           <li class="nav-item"><a class="nav-link btn btn-accent me-3" href="{% url 'home' %}">Home</a></li>
           {% if user.is_authenticated %}
-            {% if user.is_customer %}
-             <li class="nav-item">
+            {% if user.is_seller %}
+            <li class="nav-item">
+            <a href="{% url 'seller-dashboard' %}" class="nav-link btn btn-accent me-3">Go to Dashboard</a>
+            </li>
+            {% elif user.is_customer %}
+            <li class="nav-item">
             <a href="{% url 'customer-dashboard' %}" class="nav-link btn btn-accent me-3">Go to Dashboard</a>
-             </li>
-            {% elif user.is_seller %}
-             <li class="nav-item">
-             <a href="{% url 'seller-dashboard' %}" class="nav-link btn btn-accent me-3">Go to Dashboard</a>
-             </li>
-             {% endif %}
+            </li>
+            {% endif %}
+
             <li class="nav-item"><a class="nav-link btn btn-accent me-3" href="{% url 'logout'%}">Logout</a></li>
           {% else %} 
             <li class="nav-item"><a class="nav-link btn btn-accent me-3" href="{% url 'login'%}">Login</a></li>

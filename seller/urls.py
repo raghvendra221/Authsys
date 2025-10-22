@@ -2,5 +2,5 @@ from django.urls import path
 from seller.views import seller_dashboard
 
 urlpatterns = [
-    path('dashboard',seller_dashboard,name='seller-dashboard'),
+    path('seller/dashboard',seller_dashboard,name='seller-dashboard'),
 ]
