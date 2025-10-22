@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from account.forms import RegistrationForm,LoginForm,PasswordResetForm,SetNewPasswordForm
+from account.forms import RegistrationForm,LoginForm,PasswordResetForm
 from django.utils.http import urlsafe_base64_encode,urlsafe_base64_decode
 from django.utils.encoding import force_bytes,force_str
 from django.contrib.auth.tokens import default_token_generator
@@ -7,9 +7,9 @@ from django.contrib.auth import logout,authenticate,login as auth_login
 from django.contrib import messages
 from django.conf import settings
 from django.urls import reverse
-from account.utils import send_activation_email
+from account.utils import send_activation_email,send_reset_password_email
 from account.models import User
-from django.utils import bui
+from django.contrib.auth.forms import SetPasswordForm
 def home(req):
     return render(req,'account/home.html')
 
@@ -126,31 +126,48 @@ def password_reset(req):
             email=form.cleaned_data.get('email')
             user =User.objects.filter(email=email).first()
             if user:
-        
                 uidb64=urlsafe_base64_encode(force_bytes(user.pk))
                 token= default_token_generator.make_token(user)
                 reset_url=reverse(
-                'password_reset_confirm',kwargs={'uidb64':uidb64,'token':token}
+                'password-reset-confirm',kwargs={'uidb64':uidb64,'token':token}
             )
-            absolute_reset_url=f"{req,build_absolute_uri(reset_url)}"
-            messages.success
+            absolute_reset_url=f"{req.build_absolute_uri(reset_url)}"
+            send_reset_password_email(user,absolute_reset_url)
+            messages.success(req,'We have sent you a password rest link.Please check your email.')
+
+            return redirect('login')
     else:
         form=PasswordResetForm()
     return render(req,'account/pass_reset.html',{'form':form})
 
 
 
-def password_reset_confirm(request):
-    if request.method == "POST":
-        form = SetNewPasswordForm(request.POST)
-        if form.is_valid():
+def password_reset_confirm(req,uidb64,token):
+    try:
+        uid =force_str(urlsafe_base64_decode(uidb64))
+        user =User.objects.get(pk=uid)
+        if not default_token_generator.check_token(user,token):
+            messages.error(req,('This link has expired or is invalid'))
+            return redirect('password-reset')
+        if req.method == "POST":
+            form = SetPasswordForm(user,req.POST)
+            if form.is_valid():
+                form.save()
             # Here you would normally set the user's new password
-            return redirect('password_reset_complete')  # redirect to a success page
-    else:
-        form = SetNewPasswordForm()
+                messages.success(req,'Your password has been successfully reser')
+                return redirect('login')  # redirect to a success page
+            
+        else:
+            form = SetPasswordForm(user)
+        return render(req,'account/pass_reset_confirmation.html',{'form':form,'uidb64':uidb64,'token':token})
     
-    return render(request, 'account/pass_reset_confirmation.html', {'form': form})
 
+    except(TypeError,ValueError,OverflowError,User.DoesNotExist):
+        messages.error(req,'An error ocuured.Please try again later.')
+        return redirect('password-reset')
+            
+    
+   
     
 def logout_view(request):
     logout(request)  # Ends the session
