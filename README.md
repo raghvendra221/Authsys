@@ -17,7 +17,7 @@
   <li>🪪 User Registration and Login using Django’s built-in <code>auth</code> system</li>
   <li>📨 Email verification and password reset with HTML email templates</li>
   <li>💎 Glassmorphic and responsive UI design for all auth pages</li>
-  <li>📋 Floating Django messages without moving form elements</li>
+  
   <li>⚙️ Clean modular structure (base template + page-specific templates)</li>
   <li>🔒 Secure token-based password reset URLs</li>
 </ul>
@@ -99,12 +99,13 @@ EMAIL_HOST_PASSWORD = 'your_app_password'
 <h2>🎨 UI Preview</h2>
 
 <p align="center">
-  <img src="https://github.com/yourusername/django-auth-system/blob/main/screenshots/login_page.png" width="45%" alt="Login Page" />
-  <img src="https://github.com/yourusername/django-auth-system/blob/main/screenshots/register_page.png" width="45%" alt="Register Page" />
+  <img src="screenshots/Home (3).png" width="45%" alt="Home page" />
+  <img src="screenshots/register.png" width="45%" alt="Register Page" />
+  <img src="screenshots/login.png" width="45%" alt="Login Page" />
 </p>
 
 <p align="center">
-  <img src="https://github.com/yourusername/django-auth-system/blob/main/screenshots/password_reset_email.png" width="70%" alt="Password Reset Email" />
+  <img src="screenshots/reset password.png" width="70%" alt="Password Reset Email" />
 </p>
 
 <hr>
@@ -146,4 +147,4 @@ git push origin feature-name
 <hr>
 
 <h2 align="center">⭐ Star this repo if you like the project!</h2>
-<p align="center">Your support motivates me to build more projects like this 🚀</p>
+
