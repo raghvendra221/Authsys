@@ -2,6 +2,22 @@ from django import forms
 from account.models import User
 
 class RegistrationForm(forms.ModelForm):
+    #role based registration(as a seller or customer)
+    ROLE_CHOICES = (
+    ('', 'Select your role'),   # default empty option
+    ('customer','Customer'),
+    ('seller','Seller')
+)
+
+    role = forms.ChoiceField(
+    choices=ROLE_CHOICES,
+    widget=forms.Select(attrs={
+        'class': 'form-control glassy-input', 
+    }),
+    required=True
+)
+
+
     password = forms.CharField(
         widget=forms.PasswordInput(attrs={'class': 'form-control'}),
          label="Password"

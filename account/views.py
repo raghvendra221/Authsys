@@ -20,6 +20,15 @@ def register(req):
             user = form.save(commit=False)
             user.set_password(form.cleaned_data['password'])#this will save the pasword as hash intead of raw password(mtlb code language mai save hoga )
             user.is_active=False
+            
+            role=req.POST.get("role")
+            if role=="seller":
+                user.is_seller=True
+                user.is_customer=False
+            else:
+                user.is_seller=False
+                user.is_customer=True
+
             user.save()
 
             uidb64=urlsafe_base64_encode(force_bytes(user.pk))
